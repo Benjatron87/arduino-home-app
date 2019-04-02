@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temp</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    #mybtn{
+        padding: 10px;
+        width: 50px;
+    }
+</style>
+<body>
+
+  <div class="container">
+
+    <div class="jumbotron">
+     <div>Current Temp is: <a id="temp"></a> &#8457</div>
+     <br>
+     <div>At: <a id="time"></a></div>
+  </div>
+
+  <br>
+  
+  <div id="mybtn">On</div>
+  
+
+</body>
+<script type="text/javascript">
+
+let val;
+let bool;
+let update = {};
+
+$.get("/api/led/", function(req, res){
+    console.log(req[0].position);
+
+    let pos = req[0].position
+
+    update = {
+        position: pos
+    }
+
+    if(pos === 1){
+        bool = true
+
+        $("#mybtn").css('background', 'green');
+        $("#mybtn").text("On");
+    }
+    else if(pos === 0){
+
+        bool = false
+
+        $("#mybtn").css('background', 'red');
+        $("#mybtn").text("Off");
+        
+    }
+
+
+})
+
+
+    function updateLed(id, led) {
+    $.ajax("/api/led/" + id, {
+      method: "PUT",
+      data: led
+    }).then(function(){
+
+        console.log("wassup")
+
+    });
+  }
+
+
+$("#mybtn").on('click', function(){
+
+    if(bool){
+
+        bool = false
+
+        $("#mybtn").css('background', 'red');
+        $("#mybtn").text("Off");
+        
+        update.position = 0;
+
+        console.log(update)
+
+        updateLed(1, update);
+    }
+    else if(!bool) {
+
+        bool = true
+
+        $("#mybtn").css('background', 'green');
+        $("#mybtn").text("On");
+
+        update.position = 1;
+
+        console.log(update);
+
+        updateLed(1, update);
+    }
+})
+</script>
+</html>
