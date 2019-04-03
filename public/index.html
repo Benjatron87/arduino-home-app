@@ -71,6 +71,14 @@
 let bool1, bool2;
 let update = {};
 
+temp = function(){
+    $.get("api/temp", function(data){
+        console.log(data);
+    })
+}
+
+setInterval(temp, 10000);
+
 $.get("/api/led/", function(req, res){
     console.log(req);
 
