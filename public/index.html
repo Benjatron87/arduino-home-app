@@ -11,55 +11,107 @@
 </head>
 
 <style>
-    #mybtn{
-        padding: 10px;
-        width: 50px;
+    #mybtn, #mybtn2{
+        padding: 2px;
+        width: 40px;
+        border-radius: 10%;
+        float: right;
+        margin: 0px;
+    }
+    #width{
+        width: 80%;
     }
 </style>
 <body>
 
-  <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <div class="jumbotron">
-     <div>Current Temp is: <a id="temp"></a> &#8457</div>
-     <br>
-     <div>At: <a id="time"></a></div>
-  </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/department">store<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/devices">Manage your devices<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/Example">Example<span class="sr-only">(current)</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
 
-  <br>
-  
-  <div id="mybtn">On</div>
-  
+              <br>
+
+<div class="container">
+
+    <div class="jumbotron d-flex justify-content-center">
+        <div id="width">
+            <ol class="list-group">
+                <li class="list-group-item font-weight-bold txt">
+                    Living Room Lights:
+                    <button id="mybtn">On</button>
+                </li>
+                <br>
+                <li class="list-group-item font-weight-bold txt">
+                    Room Fan:
+                    <button id="mybtn2">On</button>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
 
 </body>
 <script type="text/javascript">
 
-let val;
-let bool;
+let bool1, bool2;
 let update = {};
 
 $.get("/api/led/", function(req, res){
-    console.log(req[0].position);
+    console.log(req);
 
-    let pos = req[0].position
+    let pos1 = req[0].position
+    let pos2 = req[1].position
 
-    update = {
-        position: pos
+    update1 = {
+        position: pos1
     }
 
-    if(pos === 1){
-        bool = true
+    update2 = {
+        position: pos2
+    }
+
+    if(pos1 === 1){
+        bool1 = true
 
         $("#mybtn").css('background', 'green');
         $("#mybtn").text("On");
     }
-    else if(pos === 0){
+    else if(pos1 === 0){
 
-        bool = false
+        bool1 = false
 
         $("#mybtn").css('background', 'red');
         $("#mybtn").text("Off");
         
+    }
+
+    if(pos2 === 1){
+        bool2 = true
+
+        $("#mybtn2").css('background', 'green');
+        $("#mybtn2").text("On");
+    }
+    else if(pos2 === 0){
+
+        bool2 = false
+
+        $("#mybtn2").css('background', 'red');
+        $("#mybtn2").text("Off");
     }
 
 
@@ -80,9 +132,9 @@ $.get("/api/led/", function(req, res){
 
 $("#mybtn").on('click', function(){
 
-    if(bool){
+    if(bool1){
 
-        bool = false
+        bool1 = false
 
         $("#mybtn").css('background', 'red');
         $("#mybtn").text("Off");
@@ -93,9 +145,9 @@ $("#mybtn").on('click', function(){
 
         updateLed(1, update);
     }
-    else if(!bool) {
+    else if(!bool1) {
 
-        bool = true
+        bool1 = true
 
         $("#mybtn").css('background', 'green');
         $("#mybtn").text("On");
@@ -106,6 +158,35 @@ $("#mybtn").on('click', function(){
 
         updateLed(1, update);
     }
+})
+$("#mybtn2").on('click', function(){
+
+if(bool2){
+
+    bool2 = false
+
+    $("#mybtn2").css('background', 'red');
+    $("#mybtn2").text("Off");
+    
+    update.position = 0;
+
+    console.log(update)
+
+    updateLed(2, update);
+}
+else if(!bool2) {
+
+    bool2 = true
+
+    $("#mybtn2").css('background', 'green');
+    $("#mybtn2").text("On");
+
+    update.position = 1;
+
+    console.log(update);
+
+    updateLed(2, update);
+}
 })
 </script>
 </html>
