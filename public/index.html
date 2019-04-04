@@ -75,9 +75,12 @@ setInterval(function(){
     let temp = [];
 
     $.get("api/temp", function(req, res){
-        console.log(req.body);
+        console.log(req);
+        for(let i = 0; i < req.length; i++){
+            temp.push(req[i]);
+        }
     });
-}, 5000);
+}, 10000);
 
 $.get("/api/led/", function(req, res){
     

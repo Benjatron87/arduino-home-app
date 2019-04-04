@@ -6,7 +6,7 @@ const db = require("./models");
 const app = express();
 
 temp = [{
-    temp: 72
+    temp: "72"
 }
 ];
 
