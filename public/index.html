@@ -90,7 +90,7 @@ let update = {};
 getTemp = function(){
     $.get("api/temp", function(req, res){
 
-        let temp = parseInt(req[req.length - 1].temp);
+        let temp = parseInt(req[req.length - 1].Temp);
 
         if(temp >= 78){
             $("#temp").css("color", "red");
