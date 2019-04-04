@@ -11,7 +11,7 @@
 </head>
 
 <style>
-    #mybtn, #mybtn2{
+    #mybtn, #mybtn2, #fr, #temp{
         padding: 2px;
         width: 40px;
         border-radius: 10%;
@@ -20,6 +20,13 @@
     }
     #width{
         width: 80%;
+    }
+    #myhouse{
+        color: rgb(25, 88, 0);
+        font-weight: bold;
+        font-size: 34px;
+        background: rgb(214, 214, 214);
+        border-radius: 1%;
     }
 </style>
 <body>
@@ -45,12 +52,21 @@
               </nav>
 
               <br>
-
 <div class="container">
+
+    <div id="myhouse" class="row d-flex justify-content-center">
+        My House:
+    </div>
+
+    <br>
 
     <div class="jumbotron d-flex justify-content-center">
         <div id="width">
             <ol class="list-group">
+                <li class="list-group-item font-weight-bold txt">
+                    Bedroom Temperature:<div id="temp"></div>
+                </li>
+                <br>
                 <li class="list-group-item font-weight-bold txt">
                     Living Room Lights:
                     <button id="mybtn">On</button>
@@ -71,16 +87,27 @@
 let bool1, bool2;
 let update = {};
 
-setInterval(function(){
-    let temp = [];
-
+getTemp = function(){
     $.get("api/temp", function(req, res){
-        console.log(req);
-        for(let i = 0; i < req.length; i++){
-            temp.push(req[i]);
+
+        let temp = parseInt(req[req.length - 1].temp);
+
+        if(temp >= 78){
+            $("#temp").css("color", "red");
         }
+        else if(temp > 68 && temp < 78){
+            $("#temp").css("color", "green");
+        }
+        else if(temp <= 68){
+            $("#temp").css("color", "rgb(0, 195, 202)");
+        }
+
+        $("#temp").html(temp + "&#8457");
     });
-}, 10000);
+}
+
+getTemp();
+setInterval(getTemp, 30000);
 
 $.get("/api/led/", function(req, res){
     
