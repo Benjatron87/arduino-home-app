@@ -71,17 +71,16 @@
 let bool1, bool2;
 let update = {};
 
-temp = function(){
-    $.get("api/temp", function(data){
-        console.log(data);
-    })
-}
+setInterval(function(){
+    let temp = [];
 
-setInterval(temp, 10000);
+    $.get("api/temp", function(req, res){
+        console.log(req.body);
+    });
+}, 5000);
 
 $.get("/api/led/", function(req, res){
-    console.log(req);
-
+    
     let pos1 = req[0].position
     let pos2 = req[1].position
 

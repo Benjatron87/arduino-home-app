@@ -1,10 +1,14 @@
-const moment = require('moment');
 const path = require("path");
 
 const express = require('express');
 const db = require("./models");
 
 const app = express();
+
+temp = [{
+    temp: 72
+}
+];
 
 const PORT = process.env.PORT ||  8080;
 
@@ -15,17 +19,14 @@ app.listen(PORT, function() {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
+app.get("/api/temp", function(req, res) {
+    res.json(temp);
 });
 
-
-app.get("/api/temp", (req, res)=> {
-    res.json();
-})
-
 app.post("/api/temp", (req, res)=> {
-    res.json();
+    temp.push(req.body);
+
+    res.json(true);
 })
 
 app.get("/api/led/", (req, res) => {
@@ -39,8 +40,6 @@ app.get("/api/led/", (req, res) => {
 app.get("api/led/:id", (req, res) =>
     db.led.findById(req.params.id).then( (result) => res.json(result))
 );
-
-  
 
 app.put("/api/led/:id", (req, res) => {
 
@@ -59,4 +58,8 @@ app.put("/api/led/:id", (req, res) => {
        res.json(dbled);
       });
   });
+
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 
