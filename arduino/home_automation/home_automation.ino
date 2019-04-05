@@ -58,7 +58,7 @@ void sendTemp(){
 
           HTTPClient http;    //Declare object of class HTTPClient
  
-          http.begin("http://morning-atoll-96132.herokuapp.com/api/temp");      //Specify request destination
+          http.begin("http://home-controller12345.herokuapp.com/api/temp");      //Specify request destination
           http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
           int httpPost = http.POST(postdata);
@@ -84,7 +84,7 @@ void loop() {
 
           HTTPClient http;    //Declare object of class HTTPClient
  
-          http.begin("http://morning-atoll-96132.herokuapp.com/api/led");      //Specify request destination
+          http.begin("http://home-controller12345.herokuapp.com/api/led");      //Specify request destination
           http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
           int httpGet = http.GET();
