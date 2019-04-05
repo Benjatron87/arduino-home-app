@@ -45,9 +45,6 @@ app.get("api/led/:id", (req, res) =>
 
 app.put("/api/led/:id", (req, res) => {
 
-    console.log(req.body);
-    console.log(req.params.id);
-
     db.led.update(
         req.body,
     {
@@ -56,7 +53,6 @@ app.put("/api/led/:id", (req, res) => {
         }
     })
     .then((dbled) => {
-       console.log("hey");
        res.json(dbled);
       });
   });

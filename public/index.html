@@ -153,8 +153,6 @@ $.get("/api/led/", function(req, res){
       data: led
     }).then(function(){
 
-        console.log("wassup")
-
     });
   }
 
@@ -170,8 +168,6 @@ $("#mybtn").on('click', function(){
         
         update.position = 0;
 
-        console.log(update)
-
         updateLed(1, update);
     }
     else if(!bool1) {
@@ -182,8 +178,6 @@ $("#mybtn").on('click', function(){
         $("#mybtn").text("On");
 
         update.position = 1;
-
-        console.log(update);
 
         updateLed(1, update);
     }
@@ -199,8 +193,6 @@ if(bool2){
     
     update.position = 0;
 
-    console.log(update)
-
     updateLed(2, update);
 }
 else if(!bool2) {
@@ -211,8 +203,6 @@ else if(!bool2) {
     $("#mybtn2").text("On");
 
     update.position = 1;
-
-    console.log(update);
 
     updateLed(2, update);
 }
