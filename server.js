@@ -6,9 +6,11 @@ const db = require("./models");
 const app = express();
 
 temp = [{
-    temp: "72"
+    temp: "72.00"
 }
 ];
+
+app.use(express.static("public"));
 
 const PORT = process.env.PORT ||  8080;
 

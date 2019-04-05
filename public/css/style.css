@@ -1,0 +1,48 @@
+body{
+    background-image: url("../images/room.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#mybtn, #mybtn2, #fr, #temp{
+    padding: 2px;
+    width: 40px;
+    border-radius: 10%;
+    float: right;
+    margin: 0px;
+    cursor: pointer;
+}
+#width{
+    width: 80%;
+}
+#myhouse{
+    color: rgb(25, 88, 0);
+    font-weight: bold;
+    font-size: 34px;
+    background: rgb(214, 214, 214);
+    border-radius: 1%;
+}
+li {
+margin: 10px;
+}
+.right {
+    float: right;
+}
+a {
+    text-decoration: none;
+}
+#color {
+    color: #0000FF;
+    cursor: pointer;  
+    padding: 15px;
+    padding-left: 10px;
+    margin-left: 0px;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.opac{
+    opacity: .97;
+}
