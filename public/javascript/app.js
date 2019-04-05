@@ -4,19 +4,26 @@ let update = {};
 getTemp = function(){
     $.get("api/temp", function(req, res){
 
-        let temp = parseInt(req[req.length - 1].Temp);
+        let temp = req[req.length - 1].Temp;
 
-        if(temp >= 78){
-            $("#temp").css("color", "red");
+        if(temp === "Null"){
+            $("#temp").html(temp);
         }
-        else if(temp > 68 && temp < 78){
-            $("#temp").css("color", "green");
-        }
-        else if(temp <= 68){
-            $("#temp").css("color", "rgb(0, 195, 202)");
-        }
+        else{
+            temp = parseInt(temp)
 
-        $("#temp").html(temp + "&#8457");
+            if(temp >= 78){
+                $("#temp").css("color", "red");
+            }
+            else if(temp > 68 && temp < 78){
+                $("#temp").css("color", "green");
+            }
+            else if(temp <= 68){
+                $("#temp").css("color", "rgb(0, 195, 202)");
+            }
+            $("#temp").html(temp + "&#8457");
+        }
+        
     });
 }
 

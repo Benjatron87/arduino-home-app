@@ -6,7 +6,7 @@ const db = require("./models");
 const app = express();
 
 temp = [{
-    Temp: "No Connection"
+    Temp: "Null"
 }
 ];
 
