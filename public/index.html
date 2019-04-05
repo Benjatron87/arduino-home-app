@@ -17,6 +17,7 @@
         border-radius: 10%;
         float: right;
         margin: 0px;
+        cursor: pointer;
     }
     #width{
         width: 80%;
@@ -107,7 +108,7 @@ getTemp = function(){
 }
 
 getTemp();
-setInterval(getTemp, 5000);
+setInterval(getTemp, 1000);
 
 $.get("/api/led/", function(req, res){
     
