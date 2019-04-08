@@ -30,60 +30,65 @@ getTemp = function(){
 getTemp();
 setInterval(getTemp, 1000);
 
-$.get("/api/led/", function(req, res){
-    
-    let pos1 = req[0].position
-    let pos2 = req[1].position
-
-    update1 = {
-        position: pos1
-    }
-
-    update2 = {
-        position: pos2
-    }
-
-    if(pos1 === 1){
-        bool1 = true
-
-        $("#mybtn").css('background', 'green');
-        $("#mybtn").text("On");
-    }
-    else if(pos1 === 0){
-
-        bool1 = false
-
-        $("#mybtn").css('background', 'red');
-        $("#mybtn").text("Off");
+getClr = function(){
+    $.get("/api/led/", function(req, res){
         
-    }
+        let pos1 = req[0].position
+        let pos2 = req[1].position
 
-    if(pos2 === 1){
-        bool2 = true
+        update1 = {
+            position: pos1
+        }
 
-        $("#mybtn2").css('background', 'green');
-        $("#mybtn2").text("On");
-    }
-    else if(pos2 === 0){
+        update2 = {
+            position: pos2
+        }
 
-        bool2 = false
+        if(pos1 === 1){
+            bool1 = true
 
-        $("#mybtn2").css('background', 'red');
-        $("#mybtn2").text("Off");
-    }
+            $("#mybtn").css('background', 'green');
+            $("#mybtn").text("On");
+        }
+        else if(pos1 === 0){
+
+            bool1 = false
+
+            $("#mybtn").css('background', 'red');
+            $("#mybtn").text("Off");
+            
+        }
+
+        if(pos2 === 1){
+            bool2 = true
+
+            $("#mybtn2").css('background', 'green');
+            $("#mybtn2").text("On");
+        }
+        else if(pos2 === 0){
+
+            bool2 = false
+
+            $("#mybtn2").css('background', 'red');
+            $("#mybtn2").text("Off");
+        }
 
 
-})
+    })
+}
+
+getClr();
+setInterval(getClr, 1000);
 
 
-    function updateLed(id, led) {
-    $.ajax("/api/led/" + id, {
-      method: "PUT",
-      data: led
-    }).then(function(){
+function updateLed(id, led) {
+$.ajax("/api/led/" + id, {
+    method: "PUT",
+    data: led
+}).then(function(){
 
-    });
-  }
+});
+}
 
 
 $("#mybtn").on('click', function(){
