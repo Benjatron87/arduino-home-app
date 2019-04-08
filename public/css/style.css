@@ -1,8 +1,13 @@
 body{
+    background: rgb(118,101,86);
+}
+.content{
     background-image: url("../images/room.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 50px;
+    padding-bottom: 275px;
 }
 #mybtn, #mybtn2, #fr, #temp{
     padding: 2px;
@@ -46,3 +51,8 @@ a {
 .opac{
     opacity: .97;
 }
+@media only screen and (max-width: 600px) {
+    .opac{
+        width: 100%;
+    }
+  }

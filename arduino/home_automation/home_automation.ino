@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-    const char* ssid     = ""; // wifi name
+    const char* ssid     = "Cisco44445"; // wifi name
     const char* password = ""; // wifi password
 
     int ledPin = 14; // pin D5
@@ -98,25 +98,25 @@ void loop() {
               Serial.print(payload[20]);
               Serial.print(payload[98]);
       
-              if (payload[20] == '0'){
+              if (payload[20] == '1'){
                 Serial.print("off");
                 digitalWrite(ledPin, LOW);
                 Serial.print(payload[20]);
               }
               
-              if (payload[20] == '1'){
+              if (payload[20] == '0'){
                 Serial.print("on");
                 Serial.print(payload[20]);
                 digitalWrite(ledPin, HIGH);
               }
 
-              if (payload[98] == '0'){
+              if (payload[98] == '1'){
                 Serial.print("off");
                 digitalWrite(fanPin, LOW);
                 Serial.print(payload[98]);
               }
               
-              if (payload[98] == '1'){
+              if (payload[98] == '0'){
                 Serial.print("on");
                 Serial.print(payload[98]);
                 digitalWrite(fanPin, HIGH);
