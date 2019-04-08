@@ -4,8 +4,9 @@
     const char* ssid     = "Cisco44445"; // wifi name
     const char* password = ""; // wifi password
 
-    int ledPin = 14; // pin D5
-    int fanPin = 16; // pin D0
+    int powPin1 = 14; // pin D5
+    int powPin2 = 16; // pin D0
+    int fanPin = 5; // pin D1
 
     double Thermistor(int RawADC) {
         double Temp;
@@ -30,7 +31,8 @@
       Serial.print("Your are connecting to;");
       Serial.println(ssid);
 
-      pinMode(ledPin, OUTPUT);
+      pinMode(powPin1, OUTPUT);
+      pinMode(powPin2, OUTPUT);
       pinMode(fanPin, OUTPUT);
       
       WiFi.begin(ssid, password);
@@ -46,6 +48,14 @@ void sendTemp(){
   wifiStatus = WiFi.status();
 
       double Temp = int(Thermistor(analogRead(0)));
+
+      if(Temp >= 85){
+        digitalWrite(fanPin, HIGH);
+      }
+      else if(Temp < 85){
+        digitalWrite(fanPin, LOW);
+      }
+      
       String t = String(Temp);
       String postdata = "Temp=" + t;
       
@@ -100,26 +110,26 @@ void loop() {
       
               if (payload[20] == '1'){
                 Serial.print("off");
-                digitalWrite(ledPin, LOW);
+                digitalWrite(powPin1, LOW);
                 Serial.print(payload[20]);
               }
               
               if (payload[20] == '0'){
                 Serial.print("on");
                 Serial.print(payload[20]);
-                digitalWrite(ledPin, HIGH);
+                digitalWrite(powPin1, HIGH);
               }
 
               if (payload[98] == '1'){
                 Serial.print("off");
-                digitalWrite(fanPin, LOW);
+                digitalWrite(powPin2, LOW);
                 Serial.print(payload[98]);
               }
               
               if (payload[98] == '0'){
                 Serial.print("on");
                 Serial.print(payload[98]);
-                digitalWrite(fanPin, HIGH);
+                digitalWrite(powPin2, HIGH);
               }
               
             }
