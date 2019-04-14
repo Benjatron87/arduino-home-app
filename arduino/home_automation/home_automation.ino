@@ -48,13 +48,6 @@ void sendTemp(){
   wifiStatus = WiFi.status();
 
       double Temp = int(Thermistor(analogRead(0)));
-
-      if(Temp >= 85){
-        digitalWrite(fanPin, HIGH);
-      }
-      else if(Temp < 85){
-        digitalWrite(fanPin, LOW);
-      }
       
       String t = String(Temp);
       String postdata = "Temp=" + t;
