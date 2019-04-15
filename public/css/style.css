@@ -1,14 +1,13 @@
 body{
-    background: rgb(118,101,86);
-}
-.content{
     background-image: url("../images/room.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 50px;
-    padding-bottom: 275px;
+    padding-bottom: 100vh;
     font-size: 36px;
+}
+.content{
+    margin: 40px;
 }
 #mybtn, #mybtn2, #fr{
     padding: 2px;
