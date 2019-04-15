@@ -10,13 +10,20 @@ body{
     padding-bottom: 275px;
     font-size: 36px;
 }
-#mybtn, #mybtn2, #fr, #temp{
+#mybtn, #mybtn2, #fr{
     padding: 2px;
     width: 70px;
     border-radius: 10%;
     float: right;
-    margin: 0px;
+    margin: 2px;
     cursor: pointer;
+}
+#temp{
+    padding: 2px;
+    width: 70px;
+    border-radius: 10%;
+    float: right;
+    margin: 2px;
 }
 #width{
     width: 80%;
@@ -52,9 +59,16 @@ a {
 .opac{
     opacity: .90;
 }
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 800px) {
     .content{
         width: 100%;
         font-size: 20px;
+    }
+    #myhouse{
+        color: rgb(88, 0, 0);
+        font-weight: bold;
+        font-size: 60px;
+        background: rgb(214, 214, 214);
+        border-radius: 1%;
     }
   }
