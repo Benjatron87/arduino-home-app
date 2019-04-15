@@ -8,10 +8,11 @@ body{
     background-size: cover;
     padding: 50px;
     padding-bottom: 275px;
+    font-size: 36px;
 }
 #mybtn, #mybtn2, #fr, #temp{
     padding: 2px;
-    width: 40px;
+    width: 70px;
     border-radius: 10%;
     float: right;
     margin: 0px;
@@ -23,12 +24,12 @@ body{
 #myhouse{
     color: rgb(25, 88, 0);
     font-weight: bold;
-    font-size: 34px;
+    font-size: 60px;
     background: rgb(214, 214, 214);
     border-radius: 1%;
 }
 li {
-margin: 10px;
+    margin: 10px;
 }
 .right {
     float: right;
@@ -49,10 +50,11 @@ a {
 }
 
 .opac{
-    opacity: .97;
+    opacity: .90;
 }
 @media only screen and (max-width: 1000px) {
     .content{
         width: 100%;
+        font-size: 20px;
     }
   }
