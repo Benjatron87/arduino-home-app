@@ -11,8 +11,8 @@ body{
 }
 .mybtn, #fr{
     padding: 2px;
-    width: 70px;
-    border-radius: 10%;
+    width: 30%;
+    border-radius: 5%;
     float: right;
     margin: 2px;
     cursor: pointer;
