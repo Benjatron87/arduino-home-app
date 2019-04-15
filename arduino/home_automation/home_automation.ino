@@ -6,7 +6,7 @@
 
     int powPin1 = 14; // pin D5
     int powPin2 = 16; // pin D0
-    int fanPin = 5; // pin D1
+    int powPin3 = 5; // pin D1
 
     double Thermistor(int RawADC) {
         double Temp;
@@ -33,7 +33,7 @@
 
       pinMode(powPin1, OUTPUT);
       pinMode(powPin2, OUTPUT);
-      pinMode(fanPin, OUTPUT);
+      pinMode(powPin3, OUTPUT);
       
       WiFi.begin(ssid, password);
       
@@ -123,6 +123,17 @@ void loop() {
                 Serial.print("on");
                 Serial.print(payload[98]);
                 digitalWrite(powPin2, HIGH);
+              }
+              if (payload[176] == '1'){
+                Serial.print("off");
+                digitalWrite(powPin3, LOW);
+                Serial.print(payload[98]);
+              }
+              
+              if (payload[176] == '0'){
+                Serial.print("on");
+                Serial.print(payload[98]);
+                digitalWrite(powPin3, HIGH);
               }
               
             }

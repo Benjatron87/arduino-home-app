@@ -1,5 +1,4 @@
-let bool1, bool2;
-let update = {};
+let pos1, pos2, pos3;
 
 getTemp = function(){
     $.get("api/temp", function(req, res){
@@ -30,114 +29,71 @@ getTemp = function(){
 getTemp();
 setInterval(getTemp, 1000);
 
-getClr = function(){
+getClr = function(pos, num){
+
+    if(pos === 1){
+
+        $("#mybtn" + num).css('background', 'green');
+        $("#mybtn" + num).text("On");
+    }
+    else if(pos === 0){
+
+        $("#mybtn" + num).css('background', 'red');
+        $("#mybtn" + num).text("Off");
+    }
+}
+
+get = function(){
     $.get("/api/led/", function(req, res){
         
-        let pos1 = req[0].position
-        let pos2 = req[1].position
+        pos1 = req[0].position
+        pos2 = req[1].position
+        pos3 = req[2].position
 
-        update1 = {
-            position: pos1
-        }
-
-        update2 = {
-            position: pos2
-        }
-
-        if(pos1 === 1){
-            bool1 = true
-
-            $("#mybtn").css('background', 'green');
-            $("#mybtn").text("On");
-        }
-        else if(pos1 === 0){
-
-            bool1 = false
-
-            $("#mybtn").css('background', 'red');
-            $("#mybtn").text("Off");
-            
-        }
-
-        if(pos2 === 1){
-            bool2 = true
-
-            $("#mybtn2").css('background', 'green');
-            $("#mybtn2").text("On");
-        }
-        else if(pos2 === 0){
-
-            bool2 = false
-
-            $("#mybtn2").css('background', 'red');
-            $("#mybtn2").text("Off");
-        }
-
-
+        getClr(pos1, 1);
+        getClr(pos2, 2);
+        getClr(pos3, 3);
     })
 }
 
-getClr();
-setInterval(getClr, 1000);
+updateLed = function(id, led) {
+    $.ajax("/api/led/" + id, {
+        method: "PUT",
+        data: led
+    }).then(function(){
 
-
-function updateLed(id, led) {
-$.ajax("/api/led/" + id, {
-    method: "PUT",
-    data: led
-}).then(function(){
-
-});
+    });
 }
 
+update = function(pos, num){
+    let update = {};
 
-$("#mybtn").on('click', function(){
-
-    if(bool1){
-
-        bool1 = false
-
-        $("#mybtn").css('background', 'red');
-        $("#mybtn").text("Off");
-        
+    if(pos === 1){
+        get();
         update.position = 0;
-
-        updateLed(1, update);
+        updateLed(num, update);
     }
-    else if(!bool1) {
-
-        bool1 = true
-
-        $("#mybtn").css('background', 'green');
-        $("#mybtn").text("On");
-
+    else if(pos === 0){
+        get();
         update.position = 1;
-
-        updateLed(1, update);
+        updateLed(num, update);
     }
-})
-$("#mybtn2").on('click', function(){
-
-if(bool2){
-
-    bool2 = false
-
-    $("#mybtn2").css('background', 'red');
-    $("#mybtn2").text("Off");
-    
-    update.position = 0;
-
-    updateLed(2, update);
 }
-else if(!bool2) {
 
-    bool2 = true
+$(".mybtn").unbind().on('click', function(){
 
-    $("#mybtn2").css('background', 'green');
-    $("#mybtn2").text("On");
+    get();
+    num = $(this).val();
 
-    update.position = 1;
-
-    updateLed(2, update);
-}
+    if(num == 1){
+        update(pos1, num);
+    }
+    else if(num == 2){
+        update(pos2, num);
+    }
+    else if(num == 3){
+        update(pos3, num);
+    } 
 })
+
+setInterval(get, 1000);
