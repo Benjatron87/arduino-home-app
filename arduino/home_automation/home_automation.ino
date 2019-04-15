@@ -100,39 +100,30 @@ void loop() {
             
               Serial.print(payload[20]);
               Serial.print(payload[98]);
+              Serial.print(payload[176]);
       
               if (payload[20] == '1'){
                 Serial.print("off");
                 digitalWrite(powPin1, LOW);
-                Serial.print(payload[20]);
-              }
-              
+              }         
               if (payload[20] == '0'){
                 Serial.print("on");
-                Serial.print(payload[20]);
                 digitalWrite(powPin1, HIGH);
               }
-
               if (payload[98] == '1'){
                 Serial.print("off");
                 digitalWrite(powPin2, LOW);
-                Serial.print(payload[98]);
               }
-              
               if (payload[98] == '0'){
                 Serial.print("on");
-                Serial.print(payload[98]);
                 digitalWrite(powPin2, HIGH);
               }
-              if (payload[176] == '1'){
+              if (payload[176] == '0'){
                 Serial.print("off");
                 digitalWrite(powPin3, LOW);
-                Serial.print(payload[98]);
               }
-              
-              if (payload[176] == '0'){
+              if (payload[176] == '1'){
                 Serial.print("on");
-                Serial.print(payload[98]);
                 digitalWrite(powPin3, HIGH);
               }
               
