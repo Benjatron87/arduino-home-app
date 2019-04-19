@@ -43,7 +43,7 @@ getClr = function(pos, num){
     }
 }
 
-get = function(){
+getLed = function(){
     $.get("/api/led/", function(req, res){
         
         pos1 = req[0].position
@@ -69,12 +69,12 @@ update = function(pos, num){
     let update = {};
 
     if(pos === 1){
-        get();
+        getLed();
         update.position = 0;
         updateLed(num, update);
     }
     else if(pos === 0){
-        get();
+        getLed();
         update.position = 1;
         updateLed(num, update);
     }
@@ -82,7 +82,7 @@ update = function(pos, num){
 
 $(".mybtn").unbind().on('click', function(){
 
-    get();
+    getLed();
     num = $(this).val();
 
     if(num == 1){
@@ -96,4 +96,4 @@ $(".mybtn").unbind().on('click', function(){
     } 
 })
 
-setInterval(get, 1000);
+setInterval(getLed, 1000);
