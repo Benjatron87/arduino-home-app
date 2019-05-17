@@ -10,13 +10,17 @@ body{
     margin: 40px;
 }
 .mybtn, #fr{
+    height: 10%;
     padding: 2px;
     width: 30%;
-    border-radius: 5%;
+    border-radius: 3px;
     float: right;
     margin: 2px;
     cursor: pointer;
 }
+.mybtn:hover {
+    filter: brightness(75%);
+  }
 #temp{
     padding: 2px;
     width: 70px;
