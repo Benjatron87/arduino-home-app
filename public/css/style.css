@@ -19,7 +19,7 @@ body{
     cursor: pointer;
 }
 .mybtn:hover {
-    filter: brightness(75%);
+    filter: brightness(65%);
   }
 #temp{
     padding: 2px;
