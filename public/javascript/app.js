@@ -49,7 +49,8 @@ getDoor = function(){
 }
 getDoor();
 getTemp();
-setInterval(getTemp, getDoor, 1000);
+setInterval(getTemp, 1000);
+setInterval(getDoor, 1000);
 
 getClr = function(pos, num){
 
