@@ -1,6 +1,7 @@
 const path = require("path");
 const db = require("../models");
 const temp = require("../data/temp");
+const door = require("../data/door");
 
 module.exports = function(app) {
 
@@ -10,6 +11,16 @@ module.exports = function(app) {
 
     app.post("/api/temp", (req, res)=> {
         temp.push(req.body);
+
+        res.json(true);
+    })
+
+    app.get("/api/door", function(req, res) {
+        res.json(door);
+    });
+
+    app.post("/api/door", (req, res)=> {
+        door.push(req.body);
 
         res.json(true);
     })

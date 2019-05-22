@@ -21,7 +21,7 @@ body{
 .mybtn:hover {
     filter: brightness(65%);
   }
-#temp{
+#temp, #door{
     padding: 2px;
     width: 70px;
     border-radius: 10%;

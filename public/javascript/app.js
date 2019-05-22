@@ -26,8 +26,30 @@ getTemp = function(){
     });
 }
 
+getDoor = function(){
+    $.get("api/door", function(req, res){
+
+        let door = req[req.length - 1].doorStatus;
+
+        if(door === "Null"){
+            $("#door").html(door);
+        }
+        else{
+
+            if(door === "Open"){
+                $("#door").css("color", "red");
+            }
+            else if(door === "Closed"){
+                $("#door").css("color", "rgb(0, 195, 202)");
+            }
+            $("#door").html(door);
+        }
+        
+    });
+}
+getDoor();
 getTemp();
-setInterval(getTemp, 1000);
+setInterval(getTemp, getDoor, 1000);
 
 getClr = function(pos, num){
 

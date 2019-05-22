@@ -8,7 +8,7 @@ app.use(express.json());
 
 require("./routing/apiRoutes")(app);
 
-const PORT = process.env.PORT ||  8080;
+const PORT = process.env.PORT ||  4000;
 
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
