@@ -1,7 +1,7 @@
 let pos1, pos2, pos3;
 
 getTemp = function(){
-    $.get("api/temp", function(req, res){
+    $.get("/api/temp", function(req, res){
 
         let temp = req[req.length - 1].Temp;
 
@@ -27,7 +27,7 @@ getTemp = function(){
 }
 
 getDoor = function(){
-    $.get("api/door", function(req, res){
+    $.get("/api/door", function(req, res){
 
         let door = req[req.length - 1].doorStatus;
 
