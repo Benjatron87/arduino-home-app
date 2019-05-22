@@ -40,7 +40,7 @@ getDoor = function(){
                 $("#door").css("color", "red");
             }
             else if(door === "Closed"){
-                $("#door").css("color", "rgb(0, 195, 202)");
+                $("#door").css("color", "green");
             }
             $("#door").html(door);
         }

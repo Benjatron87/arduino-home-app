@@ -21,12 +21,20 @@ body{
 .mybtn:hover {
     filter: brightness(65%);
   }
-#temp, #door{
+#temp{
     padding: 2px;
     width: 70px;
     border-radius: 10%;
     float: right;
     margin: 2px;
+}
+#door{
+    padding: 2px;
+    width: 70px;
+    border-radius: 10%;
+    float: right;
+    margin: 2px;
+    margin-right: 40px;
 }
 #width{
     width: 80%;
