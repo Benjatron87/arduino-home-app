@@ -1,5 +1,5 @@
 door = [{
-    doorStatus: "Open"
+    doorStatus: "Closed"
 }
 ];
 

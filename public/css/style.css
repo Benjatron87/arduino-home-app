@@ -23,18 +23,18 @@ body{
   }
 #temp{
     padding: 2px;
-    width: 70px;
-    border-radius: 10%;
+    width: 80px;
     float: right;
     margin: 2px;
+    text-align: left;
+    margin-right: 10%;
 }
 #door{
     padding: 2px;
-    width: 70px;
-    border-radius: 10%;
+    width: 80px;
     float: right;
     margin: 2px;
-    margin-right: 40px;
+    margin-right: 12%;
 }
 #width{
     width: 80%;

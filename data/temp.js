@@ -1,5 +1,5 @@
 temp = [{
-    Temp: "Null"
+    Temp: "87"
 }
 ];
 
