@@ -1,5 +1,9 @@
 let pos1, pos2, pos3;
 
+$(document).ready(function(){
+    $("#data").hide();
+})
+
 getTemp = function(){
     $.get("/api/temp", function(req, res){
 
@@ -22,8 +26,8 @@ getTemp = function(){
             }
             $("#temp").html(temp + "&#8457");
         }
-        
     });
+    $("#data").hide();
 }
 
 getDoor = function(){
@@ -46,6 +50,7 @@ getDoor = function(){
         }
         
     });
+    $("#data").hide();
 }
 getDoor();
 getTemp();
