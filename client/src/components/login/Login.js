@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import Data from "../Data/Data";
 import { GoogleLogin } from 'react-google-login';
 import ids from './keys'
 import './login.css'
 
 
 class Login extends Component {
-  // need to save this state to store as well figure out if i want to use token
 
   state = {
     isAuthenticated: false,
@@ -18,14 +18,18 @@ class Login extends Component {
       token: ''
     })
   }
+  componentDidMount = () => {
+
+  }
   // this is working
   googleResponse = (response) => {
     const userData = response.profileObj;
-    console.log(userData)
+    console.log(userData);
     this.setState({
-        user: response.profileObj,
-        isAuthenticated: true
-    })
+        user: userData,
+        isAuthenticated: true,
+        email: userData.email
+      })
   }
   
   onFailure = error => {
@@ -34,15 +38,17 @@ class Login extends Component {
   render() {
     let content =
         (
-            <div className='login'>
-                     <div className='google'>
-                <GoogleLogin
+            <div className='wrapper'>
+                {this.state.email === "benjt122@gmail.com" ?  
+                  <Data/> 
+                  : 
+                  <GoogleLogin
                     clientId={ids.google.clientID}
                     icon={true}
                     onSuccess={this.googleResponse}
                     onFailure={this.onFailure}
-                />
-                </div>
+                  />
+                }
             </div>
         );
 
@@ -54,5 +60,6 @@ class Login extends Component {
     );
 }
 }
+
 
 export default Login;

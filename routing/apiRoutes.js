@@ -53,5 +53,10 @@ module.exports = function(app) {
 
     app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "./public/index.html"));
-  });
+    });
+
+    app.post("/login", function(req, res){
+        console.log(req.body);
+    })
+
 };
