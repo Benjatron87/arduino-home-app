@@ -46,7 +46,7 @@ class Data extends Component {
                         <ListItem title="Temperature:" type={this.state.temp}/>
                         <ListItem title="Door Status:" type={this.state.door}/>
                         {this.state.switchArr.map((switches,index)=> (
-                            <ListItem id={switches.id} title={switches.name} type={switches.position === 1 ? "On" : "Off"}/>
+                            <ListItem key={index} id={switches.id} title={switches.name + ':'} type={switches.position === 1 ? "On" : "Off"}/>
                         ))
                         }
                 </div>
