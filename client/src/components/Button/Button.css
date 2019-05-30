@@ -1,0 +1,9 @@
+.button{
+    margin-left: 5%;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
+.button:hover{
+    filter: brightness(65%);
+}

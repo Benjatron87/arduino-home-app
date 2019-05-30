@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [1]
       }
+    },
+    name: {
+      type: String
     }
   });
   return Led;
