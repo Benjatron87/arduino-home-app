@@ -23,7 +23,6 @@ getTemp = function(){
             $("#temp").html(temp + "&#8457");
         }
     });
-    $("#data").hide();
 }
 
 getDoor = function(){
@@ -46,7 +45,6 @@ getDoor = function(){
         }
         
     });
-    $("#data").hide();
 }
 getDoor();
 getTemp();
