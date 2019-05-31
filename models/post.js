@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         len: [1]
       }
     },
-    name: {
+    temp: {
+      type: String
+    },
+    door: {
       type: String
     }
   });

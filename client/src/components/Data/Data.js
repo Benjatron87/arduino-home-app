@@ -11,31 +11,37 @@ class Data extends Component {
         switchArr: []
     }
 
-    componentDidMount(){
-        API.getTemp().then((result) => {
-            console.log(result);
-            const temp = result.data[result.data.length - 1].Temp;
+    getSwitches(){
+        API.getData().then((result) => {
 
-            this.setState({
-                temp
-            })
-        })
-        API.getDoor().then((result) => {
-            console.log(result);
-            const door = result.data[result.data.length - 1].doorStatus;
-
-            this.setState({
-                door
-            })
-        })
-        API.getSwitch().then((result) => {
-            console.log(result.data);
-            const switchArr = result.data;
+            let switchArr = result.data;
 
             this.setState({
                 switchArr
             })
-        })  
+        })
+    }
+
+    getData(){
+        API.getData().then((result) => {
+
+            let temp = result.data[0].temp;
+            let door = result.data[0].door;
+
+            this.setState({
+                temp,
+                door,
+            })
+        })
+    }
+
+    componentDidMount(){
+        this.getSwitches();
+        this.getData();
+        
+        setInterval(() => {
+            this.getData();
+        },1000)
     }
 
     render() {
@@ -43,10 +49,12 @@ class Data extends Component {
             <div className="data-container">
                 <h1>My House</h1>
                 <div className="data-wrapper">
-                        <ListItem title="Temperature:" type={this.state.temp}/>
-                        <ListItem title="Door Status:" type={this.state.door}/>
+                        <ListItem title="Temperature:" idName={parseInt(this.state.temp) > 85 ? "red" : "green"} temp={this.state.temp}/>
+
+                        <ListItem title="Door Status:" idName={this.state.door === "Closed" ? "green" : "red"} door={this.state.door}/>
+
                         {this.state.switchArr.map((switches,index)=> (
-                            <ListItem key={index} id={switches.id} title={switches.name + ':'} type={switches.position === 1 ? "On" : "Off"}/>
+                            <ListItem key={index} id={switches.id} title={"Switch " + switches.id +  ":"} position={switches.position === 1 ? "On" : "Off"} type="Button"/>
                         ))
                         }
                 </div>

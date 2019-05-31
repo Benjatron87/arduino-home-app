@@ -1,7 +1,11 @@
 .button{
-    margin-left: 5%;
-    border: 1px solid grey;
+    margin-left: 40%;
+    border: 1px solid rgb(70, 70, 70);
     cursor: pointer;
+    width: 20%;
+    padding: 1%;
+    border-radius: 5px;
+    color: rgb(219, 219, 219);
 }
 
 .button:hover{

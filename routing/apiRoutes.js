@@ -1,28 +1,35 @@
 const path = require("path");
 const db = require("../models");
-const temp = require("../data/temp");
-const door = require("../data/door");
 
 module.exports = function(app) {
 
-    app.get("/api/temp", function(req, res) {
-        res.json(temp);
-    });
-
     app.post("/api/temp", (req, res)=> {
-        temp.push(req.body);
 
-        res.json(true);
+        console.log(req.body.temp)
+        db.led.findOne({ where: 
+            {
+            id: 1
+            }
+          })
+          .then(led => {
+            led.update({
+              temp: req.body.temp
+            });
+          });
     })
 
-    app.get("/api/door", function(req, res) {
-        res.json(door);
-    });
-
     app.post("/api/door", (req, res)=> {
-        door.push(req.body);
-
-        res.json(true);
+        console.log(req.body.door)
+        db.led.findOne({ where: 
+            {
+            id: 1
+            }
+          })
+          .then(led => {
+            led.update({
+              door: req.body.door
+            });
+        });
     })
 
     app.get("/api/led/", (req, res) => {
@@ -37,17 +44,26 @@ module.exports = function(app) {
         db.led.findById(req.params.id).then( (result) => res.json(result))
     );
 
-    app.put("/api/led/:id", (req, res) => {
+    app.post("/api/led/:id", (req, res) => {
 
-        db.led.update(
-            req.body,
-        {
-            where: {
-                id: req.params.id
+        let state;
+
+        if(req.body.state === "On"){
+            state = 0;
+        }
+        else{
+            state = 1;
+        }
+
+        db.led.findOne({ where: 
+            {
+            id: req.params.id
             }
-        })
-        .then((dbled) => {
-          res.json(dbled);
+          })
+          .then(led => {
+            led.update({
+              position: state
+            });
           });
       });
 

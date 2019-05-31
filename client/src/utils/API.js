@@ -1,16 +1,10 @@
 import axios from 'axios';
 
 export default {
-    getTemp: function() {
-        return axios.get('/api/temp/');
-    },
-    getDoor: function(){
-        return axios.get('/api/door/');
-    },
-    getSwitch: function(){
+    getData: function(){
         return axios.get('/api/led/');
     },
-    flipSwitch: function(switchId){
-        return axios.put('/api/led/' + switchId);
+    flipSwitch: function(id, data){
+        return axios.post('/api/led/' + id, data);
     }
 }

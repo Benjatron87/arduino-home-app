@@ -3,12 +3,16 @@ import Button from '../Button/Button';
 import './ListItem.css';
 
 class ListItem extends Component {
-    render() {
 
+    render() {
         return (
             <div className="row list">
                 <div className="col-6 list-item">{this.props.title}</div>
-                <div className="col-6 list-data">{this.props.type === "On" || this.props.type === "Off" ? <Button position={this.props.type} toggle={this.toggleSwitch} id={this.props.id}/> : this.props.type}</div>
+                <div id={this.props.idName} className="col-6 list-data">
+                    {this.props.type === "Button" ? 
+                    <Button id={this.props.id} position={this.props.position} onClick={() => this.toggleSwitch()}/> :
+                    this.props.door ? this.props.door : this.props.temp}
+                </div>
             </div>
         );
     }
