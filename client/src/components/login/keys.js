@@ -2,7 +2,7 @@
 
 module.exports = {
     google: {
-        clientID: '859211818646-ums20503fv8se7vkf0g49ls3kd85132s.apps.googleusercontent.com',
-        clientSecret: 'ftDfAohb-ok2_fXJIvi3qwRv'
+        clientID: '632266878639-918406th2baq0ibt4dvltoreapn0cgrq.apps.googleusercontent.com',
+        clientSecret: '0FA0J77iO_H23UGzzGTGwSDi'
     }
 }
