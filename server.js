@@ -11,6 +11,10 @@ require("./routing/apiRoutes")(app);
 
 app.use('/', authRoutes)
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
+
 const PORT = process.env.PORT ||  4000;
 
 app.get("*", (req, res) => {
