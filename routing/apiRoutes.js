@@ -5,7 +5,7 @@ module.exports = function(app) {
 
     app.post("/api/temp", (req, res)=> {
 
-        console.log(req.body.temp)
+        console.log(req.body.Temp)
         db.led.findOne({ where: 
             {
             id: 1
@@ -13,13 +13,13 @@ module.exports = function(app) {
           })
           .then(led => {
             led.update({
-              temp: req.body.temp
+              temp: req.body.Temp
             });
           });
     })
 
     app.post("/api/door", (req, res)=> {
-        console.log(req.body.door)
+        console.log(req.body.doorStatus)
         db.led.findOne({ where: 
             {
             id: 1
@@ -27,7 +27,7 @@ module.exports = function(app) {
           })
           .then(led => {
             led.update({
-              door: req.body.door
+              door: req.body.doorStatus
             });
         });
     })
