@@ -21,7 +21,7 @@ router.get('/login/google/callback',
 router.get('/google/redirect', passport.authenticate('google', (req, res) => {
     // this is what we want to save to state
     console.log('hello there')
-    res.redirect('http://localhost:3000')
+    res.redirect('http://localhost:3000' || "https://my-bedroom-controller.herokuapp.com/")
     // this is where we redirect too but see what needs to be done with react
 }))
 
