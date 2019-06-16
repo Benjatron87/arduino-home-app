@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-    const char* ssid     = ""; // wifi name
+    const char* ssid     = "Cisco44445"; // wifi name
     const char* password = ""; // wifi password
 
     int powPin1 = 14; // pin D5
@@ -45,31 +45,43 @@
 }
 
 void sendTemp(){
-  wifiStatus = WiFi.status();
 
       double Temp = int(Thermistor(analogRead(0)));
       
       String t = String(Temp);
       String postdata = "Temp=" + t;
-      
-      if(wifiStatus == WL_CONNECTED){
-        
-         Serial.println("");
-         Serial.println("Your ESP is connected!");  
-         Serial.println("Your IP address is: ");
-         Serial.println(WiFi.localIP());  
 
-          HTTPClient http;    //Declare object of class HTTPClient
- 
-          http.begin("http://my-bedroom-controller.herokuapp.com/api/temp");      //Specify request destination
-          http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
+      HTTPClient http;
+  
+      http.begin("http://my-bedroom-controller.herokuapp.com/api/temp");      //Specify request destination
+      http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
-          int httpPost = http.POST(postdata);
-          Serial.print(postdata);
+      int httpPost = http.POST(postdata);
+      Serial.print(postdata);
+}
 
-          http.end();
-      }
-      delay(500);
+void switchStatus(char a, int b){
+  
+  if(b == powPin3){
+    if (a == '1'){
+      Serial.print("on");
+      digitalWrite(b, HIGH);
+              }         
+    else if (a == '0'){
+        Serial.print("off");
+        digitalWrite(b, LOW);
+    }
+  }
+  else{
+    if (a == '1'){
+        Serial.print("on");
+        digitalWrite(b, LOW);
+                }         
+    else if (a == '0'){
+        Serial.print("off");
+        digitalWrite(b, HIGH);
+    }
+  }
 }
      
 void loop() {
@@ -97,37 +109,19 @@ void loop() {
            Serial.println(payload);    //Print request response payload
           
           if (httpGet > 0) {
+
+              char switch1 = payload[20];
+              char switch2 = payload[124];
+              char switch3 = payload[226];
             
-              Serial.print(payload[20]);
-              Serial.print(payload[98]);
-              Serial.print(payload[176]);
+              Serial.print(switch1);
+              Serial.print(switch2);
+              Serial.print(switch3);
       
-              if (payload[20] == '1'){
-                Serial.print("off");
-                digitalWrite(powPin1, LOW);
-              }         
-              if (payload[20] == '0'){
-                Serial.print("on");
-                digitalWrite(powPin1, HIGH);
-              }
-              if (payload[98] == '1'){
-                Serial.print("off");
-                digitalWrite(powPin2, LOW);
-              }
-              if (payload[98] == '0'){
-                Serial.print("on");
-                digitalWrite(powPin2, HIGH);
-              }
-              if (payload[176] == '0'){
-                Serial.print("off");
-                digitalWrite(powPin3, LOW);
-              }
-              if (payload[176] == '1'){
-                Serial.print("on");
-                digitalWrite(powPin3, HIGH);
-              }
-              
-            }
+              switchStatus(switch1, powPin1);
+              switchStatus(switch2, powPin2);
+              switchStatus(switch3, powPin3);
+          }
           
            http.end();  //Close connection
           }

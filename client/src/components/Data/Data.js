@@ -11,37 +11,27 @@ class Data extends Component {
         switchArr: []
     }
 
-    getSwitches(){
-        API.getData().then((result) => {
-
-            let switchArr = result.data;
-
-            this.setState({
-                switchArr
-            })
-        })
-    }
-
     getData(){
         API.getData().then((result) => {
 
             let temp = result.data[0].temp;
             let door = result.data[0].door;
+            let switchArr = result.data;
 
             this.setState({
                 temp,
                 door,
+                switchArr
             })
         })
     }
 
     componentDidMount(){
-        this.getSwitches();
         this.getData();
         
         setInterval(() => {
             this.getData();
-        },5000)
+        },1000)
     }
 
     render() {
