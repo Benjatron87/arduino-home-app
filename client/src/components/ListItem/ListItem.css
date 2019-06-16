@@ -1,21 +1,21 @@
 .list-item{
-    padding-top: 2%;
-    padding-bottom: 2%;
+    margin-top: 6px;
+    float: left;
 }
 
 .list-data{
-    padding-top: 2%;
-    padding-bottom: 2%;
     text-align: center;
 }
 
 .list{
     font-weight: bolder;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 1%;
+    width: 90%;
+    padding: 15px 5px 15px 0px;
+    margin: 0px 10px 20px 5%;
     background: rgb(255, 255, 255);
     box-shadow: 3px 3px 3px grey;
+    border-radius: 5px;
+    text-align: center;
 }
 
 #red{
@@ -24,4 +24,11 @@
 
 #green{
     color: green;
+}
+
+.data{
+    background: rgb(238, 238, 238);
+    box-shadow: 3px 3px 3px grey;
+    padding: 1%;
+    border-radius: 5px;
 }

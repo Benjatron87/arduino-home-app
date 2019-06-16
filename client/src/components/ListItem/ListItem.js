@@ -8,11 +8,14 @@ class ListItem extends Component {
         return (
             <div className="row list">
                 <div className="col-6 list-item">{this.props.title}</div>
-                <div id={this.props.idName} className="col-6 list-data">
-                    {this.props.type === "Button" ? 
-                    <Button id={this.props.id} position={this.props.position} onClick={() => this.toggleSwitch()}/> :
-                    this.props.door ? this.props.door : this.props.temp}
-                </div>
+
+                <div className="col-1"></div>
+                
+                {this.props.type === "Button" ? 
+                <Button id={this.props.id} position={this.props.position} onClick={() => this.toggleSwitch()}/> : <div className="data col-4 list-data" id={this.props.idName}> {this.props.door ? this.props.door : this.props.temp + '\u00b0 F'}</div>}
+
+                <div className="col-1"></div>
+                
             </div>
         );
     }

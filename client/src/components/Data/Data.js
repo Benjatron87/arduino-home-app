@@ -41,7 +41,7 @@ class Data extends Component {
         
         setInterval(() => {
             this.getData();
-        },1000)
+        },5000)
     }
 
     render() {
@@ -49,9 +49,9 @@ class Data extends Component {
             <div className="data-container">
                 <h1>My House</h1>
                 <div className="data-wrapper">
-                        <ListItem title="Temperature:" idName={parseInt(this.state.temp) > 85 ? "red" : "green"} temp={this.state.temp}/>
+                        <ListItem className="data" title="Temperature:" idName={parseInt(this.state.temp) > 85 ? "red" : "green"} temp={this.state.temp}/>
 
-                        <ListItem title="Door Status:" idName={this.state.door === "Closed" ? "green" : "red"} door={this.state.door}/>
+                        <ListItem className="data" title="Door Status:" idName={this.state.door === "Closed" ? "green" : "red"} door={this.state.door}/>
 
                         {this.state.switchArr.map((switches,index)=> (
                             <ListItem key={index} id={switches.id} title={"Switch " + switches.id +  ":"} position={switches.position === 1 ? "On" : "Off"} type="Button"/>

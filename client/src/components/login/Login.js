@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Data from "../Data/Data";
 import { GoogleLogin } from 'react-google-login';
-import ids from './keys'
-import './login.css'
+import ids from './keys';
+import Wrapper from "../Wrapper/Wrapper";
+import './login.css';
 
 
 class Login extends Component {
@@ -35,28 +36,23 @@ class Login extends Component {
   onFailure = error => {
     console.log(error)
   }
+  
   render() {
-    let content =
-        (
-            <div className='wrapper'>
-                {this.state.email === "benjt122@gmail.com" ?  
-                  <Data/> 
-                  : 
-                  <GoogleLogin
-                    clientId={ids.google.clientID}
-                    icon={true}
-                    onSuccess={this.googleResponse}
-                    onFailure={this.onFailure}
-                  />
-                }
-            </div>
-        );
-
-
     return (
-        <div className="App">
-            {content}
-        </div>
+       
+      <Wrapper>
+          {this.state.email === "benjt122@gmail.com" ?  
+            <Data/> 
+            : 
+            <GoogleLogin
+              clientId={ids.google.clientID}
+              icon={true}
+              onSuccess={this.googleResponse}
+              onFailure={this.onFailure}
+            />
+          }
+      </Wrapper>
+        
     );
 }
 }

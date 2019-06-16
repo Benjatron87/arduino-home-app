@@ -26,7 +26,7 @@ class Button extends Component {
 
     render() {
         return (
-            <div onClick={() => this.toggleSwitch()} style={{background: this.state.status === "On" ? 'green' : 'red'}} className="button">
+            <div onClick={() => this.toggleSwitch()} style={{background: this.state.status === "On" ? 'green' : 'red'}} className="button col-4 list-data">
                 {this.state.status}
             </div>
         );

@@ -22,7 +22,7 @@
  void setup() {
       
       Serial.begin(115200);
-      delay(1000);
+      delay(500);
      
       // We start by connecting to a WiFi network
      
@@ -69,7 +69,7 @@ void sendTemp(){
 
           http.end();
       }
-      delay(1000);
+      delay(500);
 }
      
 void loop() {
@@ -137,6 +137,6 @@ void loop() {
         Serial.println("");
         Serial.println("WiFi not connected");
       }
-      delay(1000);
+      delay(500);
 
 }
