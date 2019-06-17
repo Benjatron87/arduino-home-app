@@ -36,7 +36,7 @@ class Login extends Component {
   onFailure = error => {
     console.log(error)
   }
-  
+
   render() {
     return (
        
@@ -44,12 +44,14 @@ class Login extends Component {
           {this.state.email === "benjt122@gmail.com" ?  
             <Data/> 
             : 
-            <GoogleLogin
-              clientId={ids.google.clientID}
-              icon={true}
-              onSuccess={this.googleResponse}
-              onFailure={this.onFailure}
-            />
+            <div className="google">
+              <GoogleLogin
+                clientId={ids.google.clientID}
+                icon={true}
+                onSuccess={this.googleResponse}
+                onFailure={this.onFailure}
+              />
+            </div>
           }
       </Wrapper>
         
