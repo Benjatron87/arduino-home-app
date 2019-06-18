@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-    const char* ssid     = "Cisco44445"; // wifi name
+    const char* ssid     = ""; // wifi name
     const char* password = ""; // wifi password
 
     int powPin1 = 14; // pin D5
@@ -52,7 +52,7 @@ void sendTemp(){
 
       HTTPClient http;
   
-      http.begin("http://my-bedroom-controller.herokuapp.com/api/temp");      //Specify request destination
+      http.begin("http://MY-WEBSITE-NAME.herokuapp.com/api/temp");      //Specify request destination
       http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
       int httpPost = http.POST(postdata);
@@ -98,7 +98,7 @@ void loop() {
 
           HTTPClient http;    //Declare object of class HTTPClient
  
-          http.begin("http://my-bedroom-controller.herokuapp.com/api/led");      //Specify request destination
+          http.begin("http://MY-WEBSITE-NAME.herokuapp.com/api/led");      //Specify request destination
           http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
           int httpGet = http.GET();
