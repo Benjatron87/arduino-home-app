@@ -3,6 +3,7 @@ import Data from "../Data/Data";
 import { GoogleLogin } from 'react-google-login';
 import ids from './keys';
 import Wrapper from "../Wrapper/Wrapper";
+import GoogleWrapper from "../GoogleWrapper/GoogleWrapper";
 import './login.css';
 
 
@@ -44,14 +45,14 @@ class Login extends Component {
           {this.state.email === "benjt122@gmail.com" ?  
             <Data/> 
             : 
-            <div className="google">
+            <GoogleWrapper>
               <GoogleLogin
                 clientId={ids.google.clientID}
                 icon={true}
                 onSuccess={this.googleResponse}
                 onFailure={this.onFailure}
               />
-            </div>
+            </GoogleWrapper>
           }
       </Wrapper>
         

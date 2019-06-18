@@ -3,7 +3,7 @@ import "./Wrapper.css";
 
 function Wrapper(props) {
   return (
-  <div className="container wrapper">
+  <div className="container wrapper  d-flex justify-content-center">
     {props.children}
   </div>
   )

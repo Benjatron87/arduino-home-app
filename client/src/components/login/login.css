@@ -1,11 +1,6 @@
-
 body{
     background-image: linear-gradient(black, rgb(0, 0, 49));
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
-}
-
-.google{
-    margin-top: 50%;
+    height: 110vh;
 }

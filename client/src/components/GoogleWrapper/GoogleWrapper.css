@@ -1,0 +1,19 @@
+.google-wrapper{
+    text-align: center;
+    margin-top: 25vh;
+    background: grey;
+    height: 200px;
+    width: 340px;
+    padding-top: 40px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(184, 184, 184);
+}
+
+h2{
+    color: white;
+    font-size: 26px;
+    margin: 10px 10px 30px 0;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    width: 250px;
+    margin-left: 45px;
+}
