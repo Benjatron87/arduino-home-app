@@ -40,17 +40,19 @@ module.exports = function(app) {
           });
       });
 
-    app.get("api/led/:id", (req, res) =>
+    app.get("api/led/:id", (req, res) => {
     
       db.led.findOne({ where: 
         {
           id: req.params.id
         }
       })
-      .then( (result) => 
+      .then( (result) => {
       
-        res.json(result))
-    );
+        res.json(result)
+      })
+      
+    })
 
     app.post("/api/led/:id", (req, res) => {
 
