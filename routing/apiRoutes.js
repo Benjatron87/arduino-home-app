@@ -41,7 +41,15 @@ module.exports = function(app) {
       });
 
     app.get("api/led/:id", (req, res) =>
-        db.led.findById(req.params.id).then( (result) => res.json(result))
+    
+      db.led.findOne({ where: 
+        {
+          id: req.params.id
+        }
+      })
+      .then( (result) => 
+      
+        res.json(result))
     );
 
     app.post("/api/led/:id", (req, res) => {
