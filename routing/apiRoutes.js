@@ -47,6 +47,7 @@ module.exports = function(app) {
     app.post("/api/led/:id", (req, res) => {
 
         let state;
+        console.log(req.body);
 
         if(req.body.state === "On"){
             state = 0;
