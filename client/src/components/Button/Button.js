@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
-import './Button.css';
 import API from '../../utils/API';
+import './Button.css';
 
 class Button extends Component {
 
-    state = {
-        status: this.props.position
-    }
-
     toggleSwitch() {
-        console.log(this.props.id, this.state.status);
-        API.flipSwitch(this.props.id, {state: this.state.status});
 
-        if(this.state.status === "On"){
-            this.setState({
-                status: "Off"
-            })
+        let state;
+
+        if(this.props.children === "On"){
+            state = "Off";
+        }
+        else if (this.props.children === "Off"){
+            state = "On";
         }
         else{
-            this.setState({
-                status: "On"
-            })
+            console.log(this.props.children);
         }
+
+        console.log(this.props.children);
+        API.flipSwitch(this.props.id, {state});
     }
 
     render() {
         return (
-            <div onClick={() => this.toggleSwitch()} style={{background: this.state.status === "On" ? 'green' : 'red'}} className="button col-4 list-data">
-                {this.state.status}
+            <div onClick={() => this.toggleSwitch()} className={`button col-4 list-data ${this.props.idName}`}>
+                {this.props.children}
             </div>
         );
     }

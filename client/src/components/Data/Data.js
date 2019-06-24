@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import API from '../../utils/API';
 import './Data.css';
+import API from '../../utils/API';
 import ListItem from '../ListItem/ListItem';
 
 class Data extends Component {
 
     state = {
-        temp: "",
-        door: "",
-        switchArr: []
+        temp:'',
+        door:'',
+        switch1:'',
+        switch2:'',
+        switch3:''
     }
 
     getData(){
@@ -16,12 +18,16 @@ class Data extends Component {
 
             let temp = result.data[0].temp;
             let door = result.data[0].door;
-            let switchArr = result.data;
+            let switch1 = result.data[0];
+            let switch2 = result.data[1];
+            let switch3 = result.data[2];
 
             this.setState({
                 temp,
                 door,
-                switchArr
+                switch1,
+                switch2,
+                switch3
             })
         })
     }
@@ -43,10 +49,12 @@ class Data extends Component {
 
                         <ListItem className="data" title="Door Status:" idName={this.state.door === "Closed" ? "green" : "red"} door={this.state.door}/>
 
-                        {this.state.switchArr.map((switches,index)=> (
-                            <ListItem key={index} id={switches.id} title={"Switch " + switches.id +  ":"} position={switches.position === 1 ? "On" : "Off"} type="Button"/>
-                        ))
-                        }
+                        <ListItem type="Button" id={this.state.switch1.id} title="Light 1:" position={this.state.switch1.position}/>
+
+                        <ListItem type="Button" id={this.state.switch2.id}  title="Light 2:" position={this.state.switch2.position}/>
+
+                        <ListItem type="Button" id={this.state.switch3.id}  title="Room Fan:" position={this.state.switch3.position}/>
+                        
                 </div>
             </div>
         );

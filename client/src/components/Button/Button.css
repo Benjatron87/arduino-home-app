@@ -6,6 +6,18 @@
     color: rgb(219, 219, 219);
 }
 
+.on{
+    color: green;
+    box-shadow: 3px 3px 3px 5px green;
+    background: rgba(0, 255, 0, .2)
+}
+
+.off{
+    color: red;
+    box-shadow: 3px 3px 3px 5px red;
+    background: rgba(255, 0, 0, 0.2)
+}
+
 .button:hover{
     filter: brightness(65%);
 }

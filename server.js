@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const authRoutes = require('./routing/authRoutes')
+const path = require("path");
 
 app.use(express.static("public"));
 

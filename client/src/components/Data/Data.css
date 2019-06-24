@@ -22,6 +22,13 @@ h1{
     height: 75vh;
 }
 
+.on{
+    color: Red;
+}
+
+.off{
+    color: green;
+}
 @media only screen and (max-width: 500px){
     .data-wrapper{
        padding-top: 5%;

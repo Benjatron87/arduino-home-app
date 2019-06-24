@@ -1,4 +1,3 @@
-const path = require("path");
 const db = require("../models");
 
 module.exports = function(app) {
@@ -51,21 +50,11 @@ module.exports = function(app) {
       
         res.json(result)
       })
-      
+
     })
 
     app.post("/api/led/:id", (req, res) => {
-
-        let state;
-        console.log(req.body);
-
-        if(req.body.state === "On"){
-            state = 0;
-        }
-        else{
-            state = 1;
-        }
-
+        
         db.led.findOne({ where: 
             {
             id: req.params.id
@@ -73,7 +62,7 @@ module.exports = function(app) {
           })
           .then(led => {
             led.update({
-              position: state
+              position: req.body.state
             });
           });
       });
