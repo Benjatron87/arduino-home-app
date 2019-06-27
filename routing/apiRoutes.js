@@ -55,11 +55,20 @@ module.exports = function(app) {
 
     app.post("/api/led/all/", (req, res) => {
 
+      let opposite;
+
+      if(req.body.state === 'On'){
+        opposite = "Off";
+      }
+      else{
+        opposite = "On";
+      }
+
       db.led.update({
         position: req.body.state
       }, {
         where: {
-          id: 1 || 2
+          position: opposite
         }
       }).then((dbLed) => {
         res.json(dbLed);
