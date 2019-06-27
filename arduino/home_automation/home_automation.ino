@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <ArduinoJson.h>
 
     const char* ssid     = ""; // wifi name
     const char* password = ""; // wifi password
@@ -52,31 +53,33 @@ void sendTemp(){
 
       HTTPClient http;
   
-      http.begin("http://MY-WEBSITE-NAME.herokuapp.com/api/temp");      //Specify request destination
+      http.begin("http://my-bedroom-controller.herokuapp.com/api/temp");      //Specify request destination
       http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
       int httpPost = http.POST(postdata);
       Serial.print(postdata);
+
+      http.end();  //Close connection
 }
 
-void switchStatus(char a, int b){
+void switchStatus(String a, int b){
   
   if(b == powPin3){
-    if (a == '1'){
+    if (a == "On"){
       Serial.print("on");
       digitalWrite(b, HIGH);
               }         
-    else if (a == '0'){
+    else if (a == "Off"){
         Serial.print("off");
         digitalWrite(b, LOW);
     }
   }
   else{
-    if (a == '1'){
+    if (a == "On"){
         Serial.print("on");
         digitalWrite(b, LOW);
                 }         
-    else if (a == '0'){
+    else if (a == "Off"){
         Serial.print("off");
         digitalWrite(b, HIGH);
     }
@@ -98,7 +101,7 @@ void loop() {
 
           HTTPClient http;    //Declare object of class HTTPClient
  
-          http.begin("http://MY-WEBSITE-NAME.herokuapp.com/api/led");      //Specify request destination
+          http.begin("http://my-bedroom-controller.herokuapp.com/api/led");      //Specify request destination
           http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
           int httpGet = http.GET();
@@ -106,12 +109,35 @@ void loop() {
  
            Serial.println(httpGet);   //Print HTTP return code
            Serial.println(payload);    //Print request response payload
+
+          const size_t capacity = JSON_ARRAY_SIZE(3) + 3*JSON_OBJECT_SIZE(6) + 250;
+          DynamicJsonDocument doc(capacity);
+          
+          deserializeJson(doc, payload);
+          
+          JsonObject root_0 = doc[0];
+          int root_0_id = root_0["id"]; // 1
+          String root_0_position = root_0["position"]; // "Off"
+          int root_0_temp = root_0["temp"]; // 80
+          const char* root_0_door = root_0["door"]; // "Open"
+          const char* root_0_updatedAt = root_0["updatedAt"]; // "2019-06-24T05:30:34.000Z"
+          
+          JsonObject root_1 = doc[1];
+          int root_1_id = root_1["id"]; // 2
+          String root_1_position = root_1["position"]; // "On"
+          const char* root_1_updatedAt = root_1["updatedAt"]; // "2019-06-24T05:25:56.000Z"
+          
+          JsonObject root_2 = doc[2];
+          int root_2_id = root_2["id"]; // 3
+          String root_2_position = root_2["position"]; // "Off"
+          const char* root_2_updatedAt = root_2["updatedAt"];
+
           
           if (httpGet > 0) {
 
-              char switch1 = payload[20];
-              char switch2 = payload[124];
-              char switch3 = payload[226];
+              String switch1 = root_0_position;
+              String switch2 = root_1_position;
+              String switch3 = root_2_position;
             
               Serial.print(switch1);
               Serial.print(switch2);
@@ -130,6 +156,4 @@ void loop() {
         Serial.println("");
         Serial.println("WiFi not connected");
       }
-      delay(500);
-
 }

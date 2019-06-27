@@ -53,6 +53,21 @@ module.exports = function(app) {
 
     })
 
+    app.post("/api/led/all/", (req, res) => {
+
+      db.led.findAll({ where: 
+        {
+        id: 1 || 2
+        }
+      })
+      .then(led => {
+        led.update({
+          position: req.body.state
+        });
+      });
+
+    })
+
     app.post("/api/led/:id", (req, res) => {
         
         db.led.findOne({ where: 
