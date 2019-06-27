@@ -55,18 +55,16 @@ module.exports = function(app) {
 
     app.post("/api/led/all/", (req, res) => {
 
-      db.led.findAll({ where: 
-        {
-        id: '1' || '2'
+      db.led.update({
+        position: req.body.state
+      }, {
+        where: {
+          id: 1 || 2
         }
-      })
-      .then(led => {
-        led.update({
-          position: req.body.state
-        });
+      }).then((dbLed) => {
+        res.json(dbLed);
       });
-
-    })
+    });
 
     app.post("/api/led/:id", (req, res) => {
         
