@@ -57,7 +57,7 @@ module.exports = function(app) {
 
       db.led.findAll({ where: 
         {
-        id: 1 || 2
+        id: '1' || '2'
         }
       })
       .then(led => {
