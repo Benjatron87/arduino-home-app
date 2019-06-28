@@ -2,28 +2,18 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
-    const char* ssid     = ""; // wifi name
-    const char* password = ""; // wifi password
+const char* ssid     = ""; // wifi name
+const char* password = ""; // wifi password
 
-    int powPin1 = 14; // pin D5
-    int powPin2 = 16; // pin D0
-    int powPin3 = 5; // pin D1
+int powPin1 = 14; // pin D5
+int powPin2 = 16; // pin D0
+int powPin3 = 5; // pin D1
 
-    double Thermistor(int RawADC) {
-        double Temp;
-         Temp = log(10000.0*((1024.0/RawADC-1)));
-         Temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * Temp * Temp ))* Temp );
-         Temp = Temp - 273.15;            // Convert Kelvin to Celcius
-         Temp = (Temp * 1.8) + 32.0; // Convert Celcius to Fahrenheit
-         return Temp;
-     }
-
-    int wifiStatus;
+int wifiStatus;
      
  void setup() {
       
       Serial.begin(115200);
-      
       // We start by connecting to a WiFi network
      
       Serial.println();
@@ -42,24 +32,6 @@
         Serial.print(".");
       }
      
-}
-
-void sendTemp(){
-
-      double Temp = int(Thermistor(analogRead(0)));
-      
-      String t = String(Temp);
-      String postdata = "Temp=" + t;
-
-      HTTPClient http;
-  
-      http.begin("http://my-bedroom-controller.herokuapp.com/api/temp");      //Specify request destination
-      http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
-
-      int httpPost = http.POST(postdata);
-      Serial.print(postdata);
-
-      http.end();  //Close connection
 }
 
 void switchStatus(String a, int b){
@@ -91,8 +63,6 @@ void loop() {
       wifiStatus = WiFi.status();
 
       if(wifiStatus == WL_CONNECTED){
-
-         sendTemp();
         
          Serial.println("");
          Serial.println("Your ESP is connected!");  
@@ -116,20 +86,20 @@ void loop() {
           deserializeJson(doc, payload);
           
           JsonObject root_0 = doc[0];
-          int root_0_id = root_0["id"]; // 1
-          String root_0_position = root_0["position"]; // "Off"
-          int root_0_temp = root_0["temp"]; // 80
-          const char* root_0_door = root_0["door"]; // "Open"
-          const char* root_0_updatedAt = root_0["updatedAt"]; // "2019-06-24T05:30:34.000Z"
+          int root_0_id = root_0["id"]; 
+          String root_0_position = root_0["position"];
+          int root_0_temp = root_0["temp"];
+          const char* root_0_door = root_0["door"];
+          const char* root_0_updatedAt = root_0["updatedAt"];
           
           JsonObject root_1 = doc[1];
-          int root_1_id = root_1["id"]; // 2
-          String root_1_position = root_1["position"]; // "On"
-          const char* root_1_updatedAt = root_1["updatedAt"]; // "2019-06-24T05:25:56.000Z"
+          int root_1_id = root_1["id"]; 
+          String root_1_position = root_1["position"];
+          const char* root_1_updatedAt = root_1["updatedAt"];
           
           JsonObject root_2 = doc[2];
-          int root_2_id = root_2["id"]; // 3
-          String root_2_position = root_2["position"]; // "Off"
+          int root_2_id = root_2["id"]; 
+          String root_2_position = root_2["position"];
           const char* root_2_updatedAt = root_2["updatedAt"];
 
           

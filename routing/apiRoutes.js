@@ -2,9 +2,9 @@ const db = require("../models");
 
 module.exports = function(app) {
 
-    app.post("/api/temp", (req, res)=> {
+    app.post("/api/data", (req, res)=> {
 
-        console.log(req.body.Temp)
+        console.log(req.body)
         db.led.findOne({ where: 
             {
             id: 1
@@ -12,23 +12,10 @@ module.exports = function(app) {
           })
           .then(led => {
             led.update({
-              temp: req.body.Temp
-            });
-          });
-    })
-
-    app.post("/api/door", (req, res)=> {
-        console.log(req.body.doorStatus)
-        db.led.findOne({ where: 
-            {
-            id: 1
-            }
-          })
-          .then(led => {
-            led.update({
+              temp: req.body.Temp,
               door: req.body.doorStatus
             });
-        });
+          });
     })
 
     app.get("/api/led/", (req, res) => {
