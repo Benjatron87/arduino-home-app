@@ -74,7 +74,7 @@ void loop() {
             doorStatus = "Closed";
           }
 
-          postdata = "doorStatus=" + doorStatus + ", Temp=" + t;
+          postdata = "doorStatus=" + doorStatus + "&Temp=" + t;
           
           HTTPClient http;    //Declare object of class HTTPClient
 
