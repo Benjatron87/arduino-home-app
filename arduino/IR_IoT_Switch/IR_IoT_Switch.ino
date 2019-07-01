@@ -29,13 +29,28 @@ void setup() {
   }
 }
 
-void sendSwitch(String state){
+void sendAll(String state){
 
       String postdata = "state=" + state;
 
       HTTPClient http;
   
       http.begin("http://my-bedroom-controller.herokuapp.com/api/led/all/");      //Specify request destination
+      http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
+
+      int httpPost = http.POST(postdata);
+      Serial.println(postdata);
+
+      http.end();   
+}
+
+void sendSwitch(String id, String state){
+
+      String postdata = "state=" + state;
+
+      HTTPClient http;
+  
+      http.begin("http://my-bedroom-controller.herokuapp.com/api/led/" + id);      //Specify request destination
       http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
       int httpPost = http.POST(postdata);
@@ -54,15 +69,38 @@ void loop() {
    
             const int val = results.value;
 
+            switch (val) {
+              case 16712445:
+                   sendAll("On");
+                break;
+              case 16738455:
+                   sendSwitch("1", "On");
+                break;
+              case 16750695:
+                   sendSwitch("2", "On");
+                break;
+              case 16756815:
+                   sendSwitch("3", "On");
+                break;
+              case 16724175:
+                   sendSwitch("1", "Off");
+                break;
+              case 16718055:
+                   sendSwitch("2", "Off");
+                break;
+              case 16743045:
+                   sendSwitch("3", "Off");
+                break;
+              case 16728765:
+                   sendAll("Off");
+                break;
+              default:
+                   Serial.println("Unused Signal");
+                break;
+            }
+
             Serial.println(val);
 
-            if(val == 16712445){
-              sendSwitch("On");
-            }
-            else{
-              sendSwitch("Off");
-            }
-            Serial.println("");
             irrecv.resume();
          }
          
