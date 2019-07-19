@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     door: {
       type: String
+    },
+    solarTemp: {
+      type: String
     }
   });
   return Led;

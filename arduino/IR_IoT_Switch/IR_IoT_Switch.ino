@@ -39,7 +39,6 @@ void sendAll(String state){
       http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
       int httpPost = http.POST(postdata);
-      Serial.println(postdata);
 
       http.end();   
 }
@@ -54,7 +53,6 @@ void sendSwitch(String id, String state){
       http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
       int httpPost = http.POST(postdata);
-      Serial.println(postdata);
 
       http.end();   
 }
@@ -95,11 +93,9 @@ void loop() {
                    sendAll("Off");
                 break;
               default:
-                   Serial.println("Unused Signal");
+                   irrecv.resume();
                 break;
             }
-
-            Serial.println(val);
 
             irrecv.resume();
          }

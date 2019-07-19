@@ -18,10 +18,26 @@ module.exports = function(app) {
           });
     })
 
+    app.post("/api/solar", (req, res)=> {
+
+      console.log(req.body)
+      db.led.findOne({ where: 
+          {
+          id: 1
+          }
+        })
+        .then(led => {
+          led.update({
+            solarTemp: req.body.solarTemp
+          });
+        });
+  })
+
     app.get("/api/led/", (req, res) => {
       
         db.led.findAll({})  
           .then((dbled) => {
+            
             res.json(dbled);
           });
       });

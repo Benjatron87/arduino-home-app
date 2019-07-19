@@ -8,6 +8,7 @@ class Data extends Component {
     state = {
         temp:'',
         door:'',
+        solarTemp:'',
         switch1:'',
         switch2:'',
         switch3:''
@@ -18,6 +19,7 @@ class Data extends Component {
 
             let temp = result.data[0].temp;
             let door = result.data[0].door;
+            let solarTemp = result.data[0].solarTemp;
             let switch1 = result.data[0];
             let switch2 = result.data[1];
             let switch3 = result.data[2];
@@ -25,6 +27,7 @@ class Data extends Component {
             this.setState({
                 temp,
                 door,
+                solarTemp,
                 switch1,
                 switch2,
                 switch3
@@ -46,6 +49,8 @@ class Data extends Component {
                 <h1>My House</h1>
                 <div className="data-wrapper">
                         <ListItem className="data" title="Temperature:" idName={parseInt(this.state.temp) > 85 ? "red" : "green"} temp={this.state.temp}/>
+
+                        <ListItem className="data" title="Outside Temp:" idName={parseInt(this.state.solarTemp) > 85 ? "red" : "green"} temp={this.state.solarTemp}/>
 
                         <ListItem className="data" title="Door Status:" idName={this.state.door === "Closed" ? "green" : "red"} door={this.state.door}/>
 
