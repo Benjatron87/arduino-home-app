@@ -19,7 +19,7 @@ h1{
 
 .data-wrapper{
     padding-top: 2%;
-    height: 85vh;
+    height: 650px;
 }
 
 .on{
@@ -32,7 +32,7 @@ h1{
 @media only screen and (max-width: 500px){
     .data-wrapper{
        padding-top: 5%;
-       height: 80vh;
+       height: 550px;
     }
 }
 
