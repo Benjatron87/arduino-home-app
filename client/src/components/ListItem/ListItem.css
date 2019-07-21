@@ -38,3 +38,10 @@
     width: 30%;
     margin-left: 10%;
 }
+
+@media only screen and (max-width: 500px){
+    .time{
+        width: 100%;
+        margin: 7px 0 0 0;
+    }
+}
