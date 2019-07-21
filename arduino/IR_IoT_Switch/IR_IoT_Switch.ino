@@ -5,8 +5,8 @@
 #include <IRrecv.h>
 #include <IRutils.h>
 
-const char* ssid     = ""; // wifi name
-const char* password = ""; // wifi password
+const char* ssid     = "TG1672GF2"; // wifi name
+const char* password = "TG1672G1F79F2"; // wifi password
 
 const int irPin = 5;    // pin D1
 

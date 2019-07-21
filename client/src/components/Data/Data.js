@@ -9,6 +9,7 @@ class Data extends Component {
         temp:'',
         door:'',
         solarTemp:'',
+        time:'',
         switch1:'',
         switch2:'',
         switch3:''
@@ -19,7 +20,8 @@ class Data extends Component {
 
             let temp = result.data[0].temp;
             let door = result.data[0].door;
-            let solarTemp = result.data[0].solarTemp;
+            let solarTemp = result.data[3].solarTemp;
+            let time = result.data[3].updatedAt;
             let switch1 = result.data[0];
             let switch2 = result.data[1];
             let switch3 = result.data[2];
@@ -28,6 +30,7 @@ class Data extends Component {
                 temp,
                 door,
                 solarTemp,
+                time,
                 switch1,
                 switch2,
                 switch3
@@ -50,7 +53,7 @@ class Data extends Component {
                 <div className="data-wrapper">
                         <ListItem className="data" title="Bedroom:" idName={parseInt(this.state.temp) > 85 ? "red" : "green"} temp={this.state.temp}/>
 
-                        <ListItem className="data" title="Outside:" idName={parseInt(this.state.solarTemp) > 85 ? "red" : "green"} temp={this.state.solarTemp}/>
+                        <ListItem className="data" title="Outside:" idName={parseInt(this.state.solarTemp) > 85 ? "red" : "green"} temp={this.state.solarTemp} time={this.state.time}/>
 
                         <ListItem className="data" title="Door Status:" idName={this.state.door === "Closed" ? "green" : "red"} door={this.state.door}/>
 

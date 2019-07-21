@@ -32,3 +32,9 @@
     padding: 1%;
     border-radius: 5px;
 }
+
+.time{
+    font-size: 10px;
+    width: 30%;
+    margin-left: 10%;
+}

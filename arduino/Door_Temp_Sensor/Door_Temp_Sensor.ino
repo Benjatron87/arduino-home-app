@@ -9,8 +9,8 @@ OneWire oneWire(ONE_WIRE_BUS);
 
 DallasTemperature sensors(&oneWire);
 
-const char* ssid     = ""; // wifi name
-const char* password = ""; // wifi password
+const char* ssid     = "TG1672GF2"; // wifi name
+const char* password = "TG1672G1F79F2"; // wifi password
 
 const int trigPin = 14; // pin D5
 const int echoPin = 16; // pin D0
