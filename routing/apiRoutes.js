@@ -12,7 +12,6 @@ module.exports = function(app) {
           })
           .then(led => {
             led.update({
-              temp: req.body.Temp,
               door: req.body.doorStatus
             });
           });
@@ -28,7 +27,8 @@ module.exports = function(app) {
         })
         .then(led => {
           led.update({
-            solarTemp: req.body.solarTemp
+            solarTemp: req.body.solarTemp,
+            voltage: req.body.voltage
           });
         });
   })

@@ -10,8 +10,8 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 // WiFi credentials.
-const char* WIFI_SSID = "";
-const char* WIFI_PASS = "";
+const char* WIFI_SSID = "TG1672GF2";
+const char* WIFI_PASS = "TG1672G1F79F2";
 
 int wifiStatus;
 
@@ -46,7 +46,7 @@ void connect() {
 
          String postdata;
 
-         postdata = "solarTemp=" + t;
+         postdata = "solarTemp=" + t + "&voltage=" + analogRead(A0);
           
          HTTPClient http;    //Declare object of class HTTPClient
   
@@ -80,8 +80,8 @@ void setup() {
 
   connect();
 
-  Serial.println("Going into deep sleep for 10 minutes");
-  ESP.deepSleep(10 * 60e6);
+  Serial.println("Going into deep sleep for 20 minutes");
+  ESP.deepSleep(30 * 60e6);
 }
 
 void loop() {
