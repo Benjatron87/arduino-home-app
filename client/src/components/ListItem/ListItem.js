@@ -17,16 +17,17 @@ class ListItem extends Component {
                         {this.props.position}
                     </Button> 
                 : 
-                    <div className="data col-4 list-data" id={this.props.idName}> 
-                        {this.props.door ? this.props.door : this.props.temp + '\u00b0 F'}
-                    </div>}
+                    ''
+                }
 
                 {this.props.type === "Charge" ?
                     <div className="data col-4 list-data" id={this.props.idName}> 
                         {this.props.charge + '%'}
                     </div>
                 :   
-                    ''
+                    <div className="data col-4 list-data" id={this.props.idName}> 
+                        {this.props.door ? this.props.door : this.props.temp + '\u00b0 F'}
+                    </div>
                 }   
 
                 <div className="time">{this.props.time ? <div>Updated At: <Moment format="YYYY/MM/DD hh:mm A">{this.props.time}</Moment></div> : ''}</div>
