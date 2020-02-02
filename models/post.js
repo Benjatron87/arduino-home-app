@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     solarTemp: {
       type: String
+    },
+    voltage:{
+      type: String
     }
   });
   return Led;
