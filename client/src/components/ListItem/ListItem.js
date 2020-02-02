@@ -13,7 +13,7 @@ class ListItem extends Component {
                 <div className="col-1"></div>
                 
                 {this.props.type === "Button" ? 
-                <Button idName={this.props.position === "On" ? "on" : "off"} id={this.props.id} onClick={() => this.toggleSwitch()}>{this.props.position}</Button> : <div className="data col-4 list-data" id={this.props.idName}> {this.props.door ? this.props.door : this.props.temp + '\u00b0 F'}</div>}
+                <Button idName={this.props.position === "On" ? "on" : "off"} id={this.props.id} onClick={() => this.toggleSwitch()}>{this.props.position}</Button> : <div className="data col-4 list-data" id={this.props.idName}> {this.props.door ? this.props.door : this.props.charge}</div>}
 
                 <div className="time">{this.props.time ? <div>Updated At: <Moment format="YYYY/MM/DD hh:mm A">{this.props.time}</Moment></div> : ''}</div>
 
