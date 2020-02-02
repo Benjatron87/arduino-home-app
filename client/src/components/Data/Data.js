@@ -31,7 +31,7 @@ class Data extends Component {
 
             voltage = 6.6 * (parseInt(voltage)/1023);
 
-            charge = -517.41 * (pow(voltage, 3)) + 5906.7 * (pow(voltage, 2)) - 22254 * (voltage) + 27702;
+            charge = -517.41 * (Math.pow(voltage, 3)) + 5906.7 * (Math.pow(voltage, 2)) - 22254 * (voltage) + 27702;
 
             if(charge < 0){
                 charge = 5;
