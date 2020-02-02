@@ -58,7 +58,7 @@ class Data extends Component {
             <div className="data-container">
                 <h1>My House</h1>
                 <div className="data-wrapper">
-                        <ListItem className="data" title="Bedroom:" idName={parseInt(this.state.temp) > 85 ? "red" : "green"} temp={this.state.voltage}/>
+                        <ListItem className="data" title="Bedroom:" idName={parseInt(this.state.temp) > 85 ? "red" : "green"} temp={this.state.charge}/>
 
                         <ListItem className="data" title="Outside:" idName={parseInt(this.state.solarTemp) > 85 ? "red" : "green"} temp={this.state.solarTemp} time={this.state.time}/>
 
