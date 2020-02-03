@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       type: String
     },
     voltage:{
-      type: String
+      type: Number
     }
   });
   return Led;

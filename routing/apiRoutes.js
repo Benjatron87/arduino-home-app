@@ -18,6 +18,7 @@ module.exports = function(app) {
     })
 
     app.post("/api/solar", (req, res)=> {
+      console.log(req.body);
       db.led.findOne({ where: 
           {
           id: 4

@@ -19,7 +19,7 @@ class ListItem extends Component {
                 : 
                     this.props.type === "Charge"?
                             <div className="data col-4 list-data" id={this.props.idName}> 
-                                {this.props.charge + '%'}
+                                {this.props.voltage + ' Volts'}
                             
                             </div>  
                     :  

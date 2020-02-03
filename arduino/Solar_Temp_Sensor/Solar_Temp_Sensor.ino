@@ -46,7 +46,7 @@ void connect() {
 
          String postdata;
 
-         postdata = "solarTemp=" + t + "&voltage=" + analogRead(A0);
+         postdata = "voltage=" + String(analogRead(A0)) + "&solarTemp=" + t;
           
          HTTPClient http;    //Declare object of class HTTPClient
   
