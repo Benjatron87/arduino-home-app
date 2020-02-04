@@ -28,10 +28,8 @@ class Data extends Component {
             let switch3 = result.data[2];
             
             voltage = 6.6 * (parseInt(voltage)/1023);
-            voltage = Math.round(voltage * 100) / 100;
+            voltage = Math.round((voltage + .3) * 100) / 100;
 
-            voltage += .3;
-            
             this.setState({
                 temp,
                 door,
