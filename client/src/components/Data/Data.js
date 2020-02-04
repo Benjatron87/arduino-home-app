@@ -29,6 +29,9 @@ class Data extends Component {
             
             voltage = 6.6 * (parseInt(voltage)/1023);
             voltage = Math.round(voltage * 100) / 100;
+
+            voltage += .3;
+            
             this.setState({
                 temp,
                 door,
