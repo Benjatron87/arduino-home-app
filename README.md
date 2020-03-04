@@ -1,6 +1,6 @@
 # arduino-home-app
 
-## Node.js application that reads data and controlls devices by communicating with a NodeMCU WiFi enabled device.
+## Node.js application that reads data and controls devices by communicating with a NodeMCU WiFi enabled device.
 
 ### The NodeMCU is programed with the Arduino IDE and controls 3 relay switches while also providing temperature data and the position of my bedroom door with a 10k thermistor and proximity sensor. 
 
