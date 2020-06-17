@@ -17,9 +17,9 @@ class ListItem extends Component {
                         {this.props.position}
                     </Button> 
                 : 
-                    this.props.type === "Charge"?
+                    this.props.type === "Humidity"?
                             <div className="data col-4 list-data" id={this.props.idName}> 
-                                {this.props.voltage + ' Volts'}
+                                {this.props.solarHumidity + '%'}
                             
                             </div>  
                     :  

@@ -9,6 +9,7 @@ class Data extends Component {
         temp:'',
         door:'',
         solarTemp:'',
+        solarHumidty:'',
         time:'',
         switch1:'',
         switch2:'',
@@ -21,20 +22,17 @@ class Data extends Component {
             let temp = result.data[0].temp;
             let door = result.data[0].door;
             let solarTemp = result.data[3].solarTemp;
-            let voltage = result.data[3].voltage;
+            let solarHumidity = result.data[3].solarHumidity;
             let time = result.data[3].updatedAt;
             let switch1 = result.data[0];
             let switch2 = result.data[1];
             let switch3 = result.data[2];
-            
-            voltage = 6.6 * (parseInt(voltage)/1023);
-            voltage = Math.round((voltage + .3) * 100) / 100;
 
             this.setState({
                 temp,
                 door,
                 solarTemp,
-                voltage,
+                solarHumidity,
                 time,
                 switch1,
                 switch2,
@@ -56,9 +54,9 @@ class Data extends Component {
             <div className="data-container">
                 <h1>My House</h1>
                 <div className="data-wrapper">
-                        <ListItem type = "Charge" className="data" title="Battery (V):" idName={parseInt(this.state.charge) > 20 ? "green" : "red"} voltage={this.state.voltage}/>
+                        <ListItem type = "Humidity" className="data" title="Humidity:" idName={this.state.solarHumidity < 75 ? "green" : "red"} solarHumidity={this.state.solarHumidity}/>
 
-                        <ListItem className="data" title="Outside:" idName={parseInt(this.state.solarTemp) > 85 ? "red" : "green"} temp={this.state.solarTemp} time={this.state.time}/>
+                        <ListItem className="data" title="Outside:" idName={parseInt(this.state.solarTemp) > 75 ? "red" : "green"} temp={this.state.solarTemp} time={this.state.time}/>
 
                         <ListItem className="data" title="Door Status:" idName={this.state.door === "Closed" ? "green" : "red"} door={this.state.door}/>
 

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     solarTemp: {
       type: String
     },
-    voltage:{
+    solarHumidity:{
       type: Number
     }
   });

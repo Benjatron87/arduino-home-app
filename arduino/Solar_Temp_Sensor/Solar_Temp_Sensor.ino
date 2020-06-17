@@ -1,18 +1,16 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <OneWire.h> 
-#include <DallasTemperature.h>
+#include "DHT.h"
 
-#define ONE_WIRE_BUS 4 // pin D2
+#define DHTPIN 4
+#define DHTTYPE DHT11 
 
-OneWire oneWire(ONE_WIRE_BUS); 
-
-DallasTemperature sensors(&oneWire);
+DHT dht(DHTPIN, DHTTYPE);
 
 // WiFi credentials.
-const char* WIFI_SSID = "TG1672GF2";
-const char* WIFI_PASS = "TG1672G1F79F2";
-
+const char* WIFI_SSID = "Hey Nate";
+const char* WIFI_PASS = "benjswifi";
+int count = 0;
 int wifiStatus;
 
 void connect() {
@@ -25,10 +23,12 @@ void connect() {
   
     WiFi.begin(WIFI_SSID, WIFI_PASS);
   
-    while (WiFi.status() != WL_CONNECTED) {
+    while (WiFi.status() != WL_CONNECTED && count <= 100) {
         delay(500);
         Serial.print(".");
+        count = count + 1;
     }
+    count = 0;
 
     wifiStatus = WiFi.status();
 
@@ -39,14 +39,20 @@ void connect() {
          Serial.println("Your IP address is: ");
          Serial.println(WiFi.localIP()); 
 
-         sensors.requestTemperatures();
+         float h = dht.readHumidity();
+         float t = dht.readTemperature();
+         float tF = (t * 1.8) + 32;
+         Serial.println("");
+         Serial.print("Humidity: ");
+         Serial.print(h); 
 
-         int Temp = (sensors.getTempFByIndex(0));
-         String t = String(Temp); 
+         Serial.println("");
+         Serial.print("Temp: ");
+         Serial.print(tF); 
 
          String postdata;
 
-         postdata = "voltage=" + String(analogRead(A0)) + "&solarTemp=" + t;
+         postdata = "solarTemp=" + String(tF) + "&solarHumidity=" + String(h);
           
          HTTPClient http;    //Declare object of class HTTPClient
   
@@ -68,6 +74,8 @@ void connect() {
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("DHTxx test!");
+  dht.begin();
   Serial.setTimeout(2000);
 
   // Wait for serial to initialize.
@@ -80,8 +88,8 @@ void setup() {
 
   connect();
 
-  Serial.println("Going into deep sleep for 20 minutes");
-  ESP.deepSleep(30 * 60e6);
+  Serial.println("Going into deep sleep for 45 minutes");
+  ESP.deepSleep(45 * 60e6);
 }
 
 void loop() {

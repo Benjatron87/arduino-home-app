@@ -2,8 +2,8 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid     = ""; // wifi name
-const char* password = ""; // wifi password
+const char* ssid     = "Hey Nate"; // wifi name
+const char* password = "benjswifi"; // wifi password
 
 int powPin1 = 14; // pin D5
 int powPin2 = 16; // pin D0
